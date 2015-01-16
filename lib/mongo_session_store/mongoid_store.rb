@@ -18,7 +18,8 @@ module ActionDispatch
           field :_id, :type => String
         end
         field :data, :type => BINARY_CLASS, :default => -> { marshaled_binary({}) }
-        attr_accessible :_id, :data if respond_to?(:attr_accessible)
+        field :user_id, :device_id, :type => String
+        attr_accessible :_id, :data, :user_id, :device_id if respond_to?(:attr_accessible)
 
         def marshaled_binary(data)
           self.class.marshaled_binary(data)
