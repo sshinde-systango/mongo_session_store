@@ -33,6 +33,8 @@ module ActionDispatch
 
         def set_session(env, sid, session_data, options = {})
           id, record = get_session_record(env, sid)
+          record.device_id = session_data['device_id'] if session_data['device_id'].present?
+          record.user_id = session_data['user_id'] if session_data['user_id'].present?
           record.data = pack(session_data)
           # Rack spec dictates that set_session should return true or false
           # depending on whether or not the session was saved or not.
